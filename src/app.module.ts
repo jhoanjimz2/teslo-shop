@@ -1,16 +1,16 @@
-import { Module }         from '@nestjs/common';
-import { ConfigModule }   from '@nestjs/config';
-import { TypeOrmModule }  from '@nestjs/typeorm';
-import { ProductsModule } from './products/products.module';
-import { SeedModule } from './seed/seed.module';
-import { CommonModule }   from './common/common.module';
-
+import { Module }            from '@nestjs/common';
+import { ConfigModule }      from '@nestjs/config';
+import { TypeOrmModule }     from '@nestjs/typeorm';
+import { ProductsModule }    from './products/products.module';
+import { SeedModule }        from './seed/seed.module';
+import { FilesModule }       from './files/files.module';
+import { CommonModule }      from './common/common.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join }              from 'path';
 
 @Module({
   imports: [
-
     ConfigModule.forRoot(),
-
 
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -22,9 +22,15 @@ import { CommonModule }   from './common/common.module';
       autoLoadEntities: true,
       synchronize: true
     }),
+    
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname,'..','public')
+    }),
+
     ProductsModule,
     CommonModule,
-    SeedModule
+    SeedModule,
+    FilesModule
   ],
 })
 export class AppModule {}
