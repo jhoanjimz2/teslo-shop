@@ -21,7 +21,7 @@ import { join }              from 'path';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       autoLoadEntities: true,
-      // synchronize: true
+      synchronize: true // En producción siempre debe estar en false
     }),
     
     ServeStaticModule.forRoot({
