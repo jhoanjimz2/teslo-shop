@@ -1,12 +1,15 @@
-import { Controller, Post, Body, Get, UseGuards, Req, Headers, SetMetadata }                      from '@nestjs/common';
-import { AuthService }                                                                            from './auth.service';
-import { CreateUserDto, LoginUserDto }                                                            from './dto';
-import { AuthGuard }                                                                              from '@nestjs/passport';
-import { RawHeaders, GetUser, RoleProtected, Auth }                                               from './decorators';
-import { User }                                                                                   from './entities/user.entity';
-import { UserRoleGuard }                                                                          from './guards';
-import { ValidRoles }                                                                             from './interfaces';
+import { Controller, Post, Body, Get, UseGuards, Req, Headers } from '@nestjs/common';
+import { AuthService }                                          from './auth.service';
+import { CreateUserDto, LoginUserDto }                          from './dto';
+import { AuthGuard }                                            from '@nestjs/passport';
+import { RawHeaders, GetUser, RoleProtected, Auth }             from './decorators';
+import { User }                                                 from './entities/user.entity';
+import { UserRoleGuard }                                        from './guards';
+import { ValidRoles }                                           from './interfaces';
+import { ApiTags }                                              from '@nestjs/swagger';
 
+
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
