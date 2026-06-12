@@ -27,7 +27,7 @@ export class ProductsController {
   }
 
   @Get()
-  @Auth(ValidRoles.admin)
+  // @Auth(ValidRoles.admin)
   findAll( @Query() paginationDto: PaginationDto ) {
     return this.productsService.findAll( paginationDto );
   }
